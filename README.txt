@@ -4,17 +4,36 @@ May 2012
 
 This module is for the C++ Sleuth Kit Framework.
 
-C++ module that makes a generic summary output report
 
 DESCRIPTION
 
-This module is a reporting module that gets all data from the blackboard and 
-uses it to populate a set of tables as follows: one table for each artifact type
-in use. For each of those tables there will be a column for each attribute type
-that appears in at least one artfiact. The rows of the table will be the individual
-artifacts, with the columns for its attributes filled in. If an attribute is not
-present for a column it is left blank. The report is created as an .htm file and 
-can be viewed from a web browser.
+This module is a reporting module that creates a generic HTML report based on data in
+the blackboard.  This report will show the results from previously run analysis 
+modules.  This report is intended to be used by developers so that they can 
+see what their modules are posting to the blackboard and for users who want a
+very generic report.  In the future, module writers will hopefully make more
+customized reports. 
+
+This report has one table per artifact type that was found during the analysis.  
+Each table will have a column for each attribute.  There is a row for each
+artifact.
+
+
+USAGE
+
+Add this module to a reporting / post-processing analysis pipeline.  See the TSK 
+Framework documents for information on adding the module to the pipeline:
+
+    http://www.sleuthkit.org/sleuthkit/docs/framework-docs/
+
+This module takes no configuration arguments.  
+
+
+RESULTS
+
+The HTML report is saved to the "Reports" folder in the output directory as defined
+in the framework for that session.
+
 
 TODO:
  - Add parameters to allow for selective artifact/attribute lookup for more custom
@@ -22,7 +41,5 @@ TODO:
  - Add a table of contents showing the artifact types and the counts of artifacts
    with links to the tables for easier navigation.
 
-USAGE
 
-Configure the reporting pipeline to include this module.
 

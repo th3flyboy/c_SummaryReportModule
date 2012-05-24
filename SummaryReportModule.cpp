@@ -31,6 +31,7 @@
 
 #include "Poco/FileStream.h"
 #include "Poco/File.h"
+#include "Poco/Exception.h"
 
 extern "C" 
 {
@@ -104,17 +105,23 @@ extern "C"
             std::string outputPath;
 
             outputPath = TskUtilities::toUTF8(TSK_SYS_PROP_GET(TskSystemProperties::OUT_DIR));
-            outputPath.append("\\Reports\\");
-
             if (outputPath == "") 
             {
-                LOGERROR(L"ReportModule Module: OutputPath is empty.");
+                LOGERROR(L"ReportModule Module: OutputDir System property is empty.");
                 return TskModule::FAIL;
             }
-
+            outputPath.append("\\Reports\\");
             Poco::File reportsFolder(outputPath);
+            if (reportsFolder.exists() == false) {
+                reportsFolder.createDirectories();
+            }
 
             outputPath.append("SummaryReport.htm");
+
+            std::wstringstream msg;
+            msg << L"Logging report to " << outputPath.c_str();
+            LOGINFO(msg.str());
+            
             Poco::FileOutputStream out = Poco::FileOutputStream(outputPath, std::ios::out|std::ios::trunc);
 
             out << "<html>" << std::endl;

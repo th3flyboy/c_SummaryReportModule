@@ -33,54 +33,92 @@
 #include "Poco/File.h"
 #include "Poco/Exception.h"
 
+static void addStyle(Poco::FileOutputStream & out){
+    out << "<style type=\"text/css\">" << std::endl <<  
+        "table.gridtable {" << std::endl <<
+        "font-family: verdana,arial,sans-serif;" << std::endl <<
+        "font-size:11px;" << std::endl <<
+        "color:#333333;" << std::endl <<
+        "border-width: 1px;" << std::endl <<
+        "border-color: #666666;" << std::endl <<
+        "border-collapse: collapse;" << std::endl <<
+        "}" << std::endl <<
+        "table.gridtable th {" << std::endl <<
+        "border-width: 1px;" << std::endl <<
+        "padding: 8px;" << std::endl <<
+        "border-style: solid;" << std::endl <<
+        "border-color: #666666;" << std::endl <<
+        "background-color: #dedede;" << std::endl <<
+        "}" << std::endl <<
+        "table.gridtable td {" << std::endl <<
+        "border-width: 1px;" << std::endl <<
+        "padding: 8px;" << std::endl <<
+        "border-style: solid;" << std::endl <<
+        "border-color: #666666;" << std::endl <<
+        "background-color: #ffffff;" << std::endl <<
+        "}" << std::endl <<
+        "h1 {" << std::endl <<
+        "font-size: 1.5em;" << std::endl <<
+        "color: #000000;" << std::endl <<
+        "font-family: Arial, sans-serif;" << std::endl <<
+        "}" << std::endl <<
+
+        "h2 {" << std::endl <<
+        "font-size: 1.2em;" << std::endl <<
+        "color: #000000;" << std::endl <<
+        "font-family: Arial, sans-serif;" << std::endl <<
+        "}" << std::endl <<
+
+        "h3 {" << std::endl <<
+        "margin-left: 0;" << std::endl <<
+        "margin-bottom: 0;" << std::endl <<
+        "font-size: 1.0em;" << std::endl <<
+        "color: #000000;" << std::endl <<
+        "font-family: Arial, sans-serif;" << std::endl <<
+        "}" << std::endl <<
+        "</style>" << std::endl;
+}
+
 extern "C" 
 {
-
-    void addStyle(Poco::FileOutputStream & out){
-        out << "<style type=\"text/css\">" << std::endl <<  
-            "table.gridtable {" << std::endl <<
-            "font-family: verdana,arial,sans-serif;" << std::endl <<
-            "font-size:11px;" << std::endl <<
-            "color:#333333;" << std::endl <<
-            "border-width: 1px;" << std::endl <<
-            "border-color: #666666;" << std::endl <<
-            "border-collapse: collapse;" << std::endl <<
-            "}" << std::endl <<
-            "table.gridtable th {" << std::endl <<
-            "border-width: 1px;" << std::endl <<
-            "padding: 8px;" << std::endl <<
-            "border-style: solid;" << std::endl <<
-            "border-color: #666666;" << std::endl <<
-            "background-color: #dedede;" << std::endl <<
-            "}" << std::endl <<
-            "table.gridtable td {" << std::endl <<
-            "border-width: 1px;" << std::endl <<
-            "padding: 8px;" << std::endl <<
-            "border-style: solid;" << std::endl <<
-            "border-color: #666666;" << std::endl <<
-            "background-color: #ffffff;" << std::endl <<
-            "}" << std::endl <<
-            "h1 {" << std::endl <<
-            "font-size: 1.5em;" << std::endl <<
-            "color: #000000;" << std::endl <<
-            "font-family: Arial, sans-serif;" << std::endl <<
-            "}" << std::endl <<
-
-            "h2 {" << std::endl <<
-            "font-size: 1.2em;" << std::endl <<
-            "color: #000000;" << std::endl <<
-            "font-family: Arial, sans-serif;" << std::endl <<
-            "}" << std::endl <<
-
-            "h3 {" << std::endl <<
-            "margin-left: 0;" << std::endl <<
-            "margin-bottom: 0;" << std::endl <<
-            "font-size: 1.0em;" << std::endl <<
-            "color: #000000;" << std::endl <<
-            "font-family: Arial, sans-serif;" << std::endl <<
-            "}" << std::endl <<
-            "</style>" << std::endl;
+    #ifdef _MSC_VER
+        #pragma warning( push )
+        #pragma warning( disable: 4190 )
+    #endif
+ 
+    /**
+     * Module identification function. 
+     *
+     * @return The name of the module as a std::string.
+     */
+    std::string name()
+    {
+        return "SummaryReport";
     }
+
+    /**
+     * Module identification function. 
+     *
+     * @return A description of the module as a std::string.
+     */
+    std::string description()
+    {
+        return "";
+    }
+
+    /**
+     * Module identification function. 
+     *
+     * @return The version of the module as a std::string.
+     */
+    std::string version()
+    {
+        return "0.0.0";
+    }
+
+    #ifdef _MSC_VER
+        #pragma warning( pop )
+    #endif
 
     /**
     * Module initialization function. Takes a string as input that allows

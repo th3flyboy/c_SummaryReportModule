@@ -119,7 +119,7 @@ extern "C"
      */
     TSK_MODULE_EXPORT const char *description()
     {
-        return "Creates a generic HTML report based on data in the blackboard";
+        return "Creates an HTML report on data posted to the blackboard";
     }
 
     /**

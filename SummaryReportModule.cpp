@@ -154,7 +154,7 @@ extern "C"
         try{
             std::string outputPath;
 
-            outputPath = GetSystemProperty(TskSystemProperties::OUT_DIR);
+            outputPath = GetSystemProperty(TskSystemProperties::MODULE_OUT_DIR);
             if (outputPath == "") 
             {
                 LOGERROR(L"ReportModule Module: OutputDir System property is empty.");

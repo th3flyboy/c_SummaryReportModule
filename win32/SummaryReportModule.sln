@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C++ Express 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SummaryReportModule", "SummaryReportModule.vcproj", "{1CA42FA6-A110-4BB1-B7D6-C0AB6C4FA1AD}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SummaryReportModule", "SummaryReportModule.vcxproj", "{1CA42FA6-A110-4BB1-B7D6-C0AB6C4FA1AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

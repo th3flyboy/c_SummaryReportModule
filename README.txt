@@ -7,7 +7,7 @@ This module is for the C++ Sleuth Kit Framework.
 
 DESCRIPTION
 
-This module is a reporting module that creates a generic HTML report based on data in
+This module is a post-processing module that creates a generic HTML report based on data in
 the blackboard.  This report will show the results from previously run analysis 
 modules.  This report is intended to be used by developers so that they can 
 see what their modules are posting to the blackboard and for users who want a
@@ -18,10 +18,13 @@ This report has one table per artifact type that was found during the analysis.
 Each table will have a column for each attribute.  There is a row for each
 artifact.
 
+DEPLOYMENT REQUIREMENTS
+
+This module does not have any specific deployment requirements.
 
 USAGE
 
-Add this module to a reporting / post-processing analysis pipeline.  See the TSK 
+Add this module to a post-processing analysis pipeline.  See the TSK 
 Framework documents for information on adding the module to the pipeline:
 
     http://www.sleuthkit.org/sleuthkit/docs/framework-docs/

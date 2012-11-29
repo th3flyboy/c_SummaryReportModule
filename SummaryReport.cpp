@@ -13,13 +13,6 @@
  * Contains the implementation of a function that creates a blackboard artifacts report.
  */
 
-// Platform includes
-#ifndef TSK_WIN32
-    #include <windows.h>
-#else
-    #error Only windows platforms currently supported
-#endif
-
 // TSK Framework includes
 #include "Utilities/TskUtilities.h"
 #include "Services/TskServices.h"
@@ -106,6 +99,7 @@ namespace
     {
             out << "<html>" << std::endl;
             out << "<head>" << std::endl;
+            out << "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />" << std::endl;
             addStyle(out);
 
             out << "<title>Report</title>" << std::endl;
@@ -117,8 +111,8 @@ namespace
             std::stringstream condition;
 
             out << "<h1>Sleuth Kit Framework Summary Report</h1>" << std::endl;
-            std::vector<std::wstring> names = imgdb.getImageNames();
-            out << "<h2>Image Path: " << TskUtilities::toUTF8(names.front()) << "</h2>" << std::endl;
+            std::vector<std::string> names = imgdb.getImageNames();
+            out << "<h2>Image Path: " << names.front() << "</h2>" << std::endl;
 
             out << "<h2>Image Layout</h2>" << std::endl;
             std::list<TskVolumeInfoRecord> volumeInfoList;
@@ -219,7 +213,7 @@ namespace
                     out << "<thead>" << std::endl;
                     out << "<tr>" << std::endl;
                     out << "<th>File Name</th>" << std::endl;
-                    for (int i = 0; i < attrTypeIDs.size(); i++)
+                    for (size_t i = 0; i < attrTypeIDs.size(); i++)
                     {
                         out << "<th>" << blackboard.attrTypeIDToTypeDisplayName(attrTypeIDs[i]) << "</th>" << std::endl;
                     }
@@ -230,11 +224,11 @@ namespace
                 out << "<td>" << imgdb.getFileName(it->getObjectID()) << "</td>" << std::endl;
                 std::vector<TskBlackboardAttribute> attrs = it->getAttributes();
 
-                for (int j = 0; j < attrTypeIDs.size(); j++)
+                for (size_t j = 0; j < attrTypeIDs.size(); j++)
                 {
                     TskBlackboardAttribute * attr;
                     bool found = false;
-                    for (int k = 0; k < attrs.size(); k++)
+                    for (size_t k = 0; k < attrs.size(); k++)
                     {
                         if (attrs[k].getAttributeTypeID() == attrTypeIDs[j])
                         {
@@ -250,12 +244,12 @@ namespace
                     else
                     {
                         out << "<td>";
-                        std::vector<byte> bytes;
+                        std::vector<unsigned char> bytes;
                         switch(attr->getValueType())
                         {
                             case TSK_BYTE:
                                 bytes = attr->getValueBytes();
-                                for(int k = 0; k < bytes.size(); k++)
+                                for(size_t k = 0; k < bytes.size(); k++)
                                     out << bytes[k];
                                 out << "</td>" << std::endl;
                                 break;
@@ -294,7 +288,7 @@ namespace TskSummaryReport
 {
     void generateReport(const std::string &reportPath)
     {
-        Poco::FileOutputStream out = Poco::FileOutputStream(reportPath, std::ios::out | std::ios::trunc);
+        Poco::FileOutputStream out(reportPath, std::ios::out | std::ios::trunc);
         writeReport(out);
     }
 }

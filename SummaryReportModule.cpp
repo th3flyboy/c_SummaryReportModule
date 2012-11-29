@@ -30,6 +30,13 @@
 #include <sstream>
 #include <vector>
 
+namespace
+{
+    const char * MODULE_NAME = "SummaryReport";
+    const char * MODULE_DESCRIPTION = "Creates an HTML report on data posted to the blackboard";
+    const char * MODULE_VERSION = "1.0.0";        
+}
+
 extern "C" 
 {
     /**
@@ -39,7 +46,7 @@ extern "C"
      */
     TSK_MODULE_EXPORT const char *name()
     {
-        return "SummaryReport";
+        return MODULE_NAME;
     }
 
     /**
@@ -49,7 +56,7 @@ extern "C"
      */
     TSK_MODULE_EXPORT const char *description()
     {
-        return "Creates an HTML report on data posted to the blackboard";
+        return MODULE_DESCRIPTION;
     }
 
     /**
@@ -59,7 +66,7 @@ extern "C"
      */
     TSK_MODULE_EXPORT const char *version()
     {
-        return "1.0.0";
+        return MODULE_VERSION;
     }
 
     /**
@@ -84,12 +91,12 @@ extern "C"
     TskModule::Status TSK_MODULE_EXPORT report() 
     {
         std::ostringstream msgPrefix;
-        msgPrefix << name() << "::report : ";
+        msgPrefix << MODULE_NAME << "::report : ";
         try
         {
             // Create an output folder.
-            Poco::Path outputFolderPath(GetSystemProperty(TskSystemProperties::MODULE_OUT_DIR));
-            outputFolderPath.pushDirectory(name());
+            Poco::Path outputFolderPath = Poco::Path::forDirectory(GetSystemProperty(TskSystemProperties::MODULE_OUT_DIR));
+            outputFolderPath.pushDirectory(MODULE_NAME);
             Poco::File(outputFolderPath).createDirectory();
 
             // Generate the report.
@@ -135,12 +142,12 @@ extern "C"
     TskModule::Status TSK_MODULE_EXPORT finalize()
     {
         std::ostringstream msgPrefix;
-        msgPrefix << name() << "::finalize : ";
+        msgPrefix << MODULE_NAME << "::finalize : ";
         try
         {
             // Delete the output folder if it's empty.
-            Poco::Path outputFolderPath(GetSystemProperty(TskSystemProperties::MODULE_OUT_DIR));
-            outputFolderPath.pushDirectory(name());
+            Poco::Path outputFolderPath = Poco::Path::forDirectory(GetSystemProperty(TskSystemProperties::MODULE_OUT_DIR));
+            outputFolderPath.pushDirectory(MODULE_NAME);
             Poco::File outputFolder(outputFolderPath);
             std::vector<Poco::File> filesList;
             outputFolder.list(filesList);

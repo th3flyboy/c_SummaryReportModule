@@ -17,8 +17,8 @@
 #include "SummaryReport.h"
 
 // TSK Framework includes
-#include "TskModuleDev.h"
-#include "Services/TskSystemProperties.h"
+#include "tsk/framework/utilities/TskModuleDev.h"
+#include "tsk/framework/services/TskSystemProperties.h"
 
 // Poco includes
 #include "Poco/Path.h"

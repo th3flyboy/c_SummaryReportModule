@@ -14,8 +14,8 @@
  */
 
 // TSK Framework includes
-#include "Utilities/TskUtilities.h"
-#include "Services/TskServices.h"
+#include "tsk/framework/utilities/TskUtilities.h"
+#include "tsk/framework/services/TskServices.h"
 
 // Poco includes
 #include "Poco/FileStream.h"

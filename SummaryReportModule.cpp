@@ -18,7 +18,6 @@
 
 // TSK Framework includes
 #include "TskModuleDev.h"
-#include "Services/TskSystemProperties.h"
 
 // Poco includes
 #include "Poco/Path.h"

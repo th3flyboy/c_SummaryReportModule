@@ -87,7 +87,7 @@ extern "C"
         try
         {
             // Create an output folder.
-            Poco::Path outputFolderPath(GetSystemProperty(TskSystemProperties::MODULE_OUT_DIR));
+            Poco::Path outputFolderPath = Poco::Path::forDirectory(GetSystemProperty(TskSystemProperties::MODULE_OUT_DIR));
             outputFolderPath.pushDirectory(name());
             Poco::File(outputFolderPath).createDirectory();
 
@@ -138,7 +138,7 @@ extern "C"
         try
         {
             // Delete the output folder if it's empty.
-            Poco::Path outputFolderPath(GetSystemProperty(TskSystemProperties::MODULE_OUT_DIR));
+            Poco::Path outputFolderPath = Poco::Path::forDirectory(GetSystemProperty(TskSystemProperties::MODULE_OUT_DIR));
             outputFolderPath.pushDirectory(name());
             Poco::File outputFolder(outputFolderPath);
             std::vector<Poco::File> filesList;
